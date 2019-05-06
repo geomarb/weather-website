@@ -11,6 +11,7 @@ const forecast = (latitude, longitude, callback) => {
             summary: body.daily.data[0].summary,
             temperature: body.currently.temperature,
             precipProbability: body.currently.precipProbability,
+            time: body.timezone,
             result: `${body.daily.data[0].summary} It is currently ${body.currently.temperature} degrees out. There is a ${body.currently.precipProbability}% chance of rain.`
 
         })
