@@ -51,14 +51,14 @@ app.get('/weather', (req, res) => {
     geocode(address, (error, { latitude, longitude, placeName } = {}) => {
         if (error) return res.send({error})
     
-        forecast(latitude,longitude, (error, {temperature, temperatureHigh, temperatureLow, summary, precipProbability} = {}) => {
+        forecast(latitude,longitude, (error, {summary} = {}) => {
         
             if (error) return res.send({error})
     
             res.send({
-                forecast: `It is currently ${temperature} degrees in ${placeName}. ${summary} There is ${precipProbability}% chance of rain and the temperature will be between ${temperatureLow} and ${temperatureHigh} degrees.`,
+                address: address,
                 location: placeName,
-                address: address
+                forecast: summary//`It is currently ${temperature} degrees in ${placeName}. ${summary} There is ${precipProbability}% chance of rain and the temperature will be between ${temperatureLow} and ${temperatureHigh} degrees.`
             })
         })
     })
